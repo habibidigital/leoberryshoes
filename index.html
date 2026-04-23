@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LeoBerry</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+
+/* NAVBAR */
+.header {
+  width: 100%;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: 1000;
+  background: rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+}
+
+.logo img {
+  height: 40px;
+}
+
+/* NAV */
+.nav {
+  position: absolute;
+  top: 60px;
+  right: -100%;
+  flex-direction: column;
+  background: rgba(255,255,255,0.95);
+  width: 200px;
+  padding: 20px;
+  transition: 0.3s;
+  display: flex;
+}
+
+.nav.active {
+  right: 0;
+}
+
+.nav a {
+  margin: 10px 0;
+  text-decoration: none;
+  color: black;
+}
+
+/* MENU */
+.menu-toggle {
+  font-size: 24px;
+  color: black;
+  cursor: pointer;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  height: 100vh;
+}
+
+.hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* SMOOTH FADE TO WHITE */
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.2),
+    rgba(0,0,0,0.3),
+    #C4A484(255,255,255,0.9),
+    #ffffff
+  );
+}
+
+/* HERO TEXT */
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  text-align: center;
+  color: white;
+  z-index: 2;
+  width: 90%;
+}
+
+.hero-text h1 {
+  font-size: clamp(28px, 6vw, 60px);
+  font-weight: 700;
+
+  text-shadow: 0 0 10px rgba(255,255,255,0.6);
+}
+
+.hero-text p {
+  margin: 15px 0;
+  font-size: clamp(14px, 3vw, 20px);
+}
+
+/* BUTTON */
+.btn {
+  display: inline-block;
+  padding: 10px 18px;
+  background: white;
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+}
+
+/* FEATURES */
+.features {
+  display: flex;
+  gap: 10px;
+  padding: 16px 10px;
+
+  position: relative;
+  margin-top: -40px;
+  z-index: 5;
+}
+
+/* LIGHT GLASS CARDS */
+.feature {
+  flex: 1;
+  background: rgba(255,255,255,0.6);
+  backdrop-filter: blur(12px);
+
+  padding: 14px 8px;
+  border-radius: 14px;
+  text-align: center;
+
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* ICON */
+.feature svg {
+  width: 26px;
+  height: 26px;
+  margin-bottom: 8px;
+  stroke: #000;
+}
+
+/* TEXT */
+.feature h3 {
+  font-size: 13px;
+  margin-bottom: 3px;
+  color: #000;
+}
+
+.feature p {
+  font-size: 11px;
+  color: #666;
+}
+
+/* OFFER SECTION (SEAMLESS) */
+.offer {
+  padding: 40px 16px;
+  text-align: center;
+
+  background: linear-gradient(
+    135deg,
+    #ffffff,
+    #f5f5f5
+  );
+
+  color: #000;
+}
+
+/* CONTENT */
+.offer h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.offer p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+/* BUTTON */
+.offer-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #000;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* DESKTOP */
+@media (min-width: 768px) {
+
+  .nav {
+    position: static;
+    flex-direction: row;
+    background: none;
+    width: auto;
+    padding: 0;
+  }
+
+  .nav a {
+    margin-left: 30px;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  .logo img {
+    height: 60px;
+  }
+
+  .features {
+    max-width: 700px;
+    margin: -60px auto 0;
+  }
+}
+
+.hero2 {
+  position: relative;
+  height: auto;
+    margin-bottom: 0;
+}
+
+.hero2 img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+/* DARK OVERLAY (for text visibility) */
+.hero2::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.2),
+    rgba(0,0,0,0.5)
+  );
+}
+
+/* CONTENT */
+.hero2-content {
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  color: #fff;
+  z-index: 2;
+}
+
+/* HEADING */
+.hero2-content h1 {
+  font-size: clamp(28px, 6vw, 60px);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.hero2-content span {
+  color: #facc15; /* yellow highlight */
+}
+
+/* SUBTEXT */
+.hero2-content p {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+/* BUTTON */
+.hero2-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #facc15;
+  color: #000;
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: 6px;
+}
+
+/* MOBILE FIX */
+@media (max-width: 768px) {
+  .hero2-content {
+    top: 15%;
+    left: 6%;
+  }
+}
+
+
+/* GRID */
+.products {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+/* CARD */
+.product {
+  background: #f8f8f8;
+  border-radius: 14px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 100%;
+  transition: 0.3s;
+}
+
+/* IMAGE WRAPPER (FIX SIZE) */
+.product-img {
+  width: 100%;
+  aspect-ratio: 1/1; /* 👈 same square size */
+  overflow: hidden;
+}
+
+/* IMAGE FIX */
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 👈 same fit */
+  transition: 0.4s;
+}
+
+/* TEXT AREA */
+.product-info {
+  padding: 10px;
+}
+
+.product-info h3 {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.product-info p {
+  font-size: 13px;
+  color: #555;
+}
+
+/* HOVER EFFECT */
+.product:hover img {
+  transform: scale(1.08);
+}
+
+/* MOBILE TOUCH EFFECT */
+.product:active {
+  transform: scale(0.96);
+}
+
+/* DESKTOP */
+@media (min-width: 768px) {
+  .products {
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1100px;
+    margin: auto;
+  }
+}
+
+
+/* FOOTER */
+.footer {
+  background: #000;
+  color: #ccc;
+  padding: 50px 20px 20px;
+  margin-top: 60px;
+}
+
+.footer-container {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.footer h2 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.footer h3 {
+  color: #fff;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.footer p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.footer a {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 8px;
+  color: #aaa;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer a:hover {
+  color: #fff;
+}
+
+/* SOCIAL */
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.social-icons svg {
+  width: 20px;
+  height: 20px;
+  stroke: #ccc;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.social-icons svg:hover {
+  stroke: #facc15;
+}
+
+/* BOTTOM */
+.footer-bottom {
+  border-top: 1px solid #222;
+  margin-top: 30px;
+  padding-top: 15px;
+  text-align: center;
+  font-size: 12px;
+  color: #777;
+}
+
+/* 📱 TABLET */
+@media (max-width: 900px) {
+  .footer-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 📱 MOBILE */
+@media (max-width: 500px) {
+  .footer-container {
+   grid-template-columns: repeat(2, 1fr); /* 👈 2 column */
+    text-align: left;
+   
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+}
+.section-title {
+  text-align: center;
+  font-size: 22px;
+  margin: 40px 0 20px;
+}
+
+.image-section {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-section img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.whatsapp-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #25D366;
+  color: white;
+  font-size: 28px;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 999;
+  transition: 0.3s;
+}
+
+.whatsapp-btn:hover {
+  transform: scale(1.1);
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <div class="logo">
+    <img src="leoberry_logo_white.png" alt="logo">
+  </div>
+
+  <nav class="nav">
+    <a href="#">Home</a>
+    <a href="#">Collection</a>
+    <a href="#">Shop</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <div class="menu-toggle" id="menu-toggle">☰</div>
+</header>
+
+<section class="hero">
+  <img src="pair-brown-shoes-with-black-leather-sole-word-bottom.jpg" alt="banner">
+
+  <div class="hero-text">
+    <h1>Step Into Style</h1>
+    <p>Premium Leather Collection</p>
+    <a href="#" class="btn">Shop Now</a>
+  </div>
+</section>
+<!--whatsapp section-->
+<a href="https://wa.me/919999999999?text=Hi%20I%20am%20interested%20in%20your%20loafer%20shoes"
+   class="whatsapp-btn"
+   target="_blank">
+   <i class="fab fa-whatsapp"></i>
+</a>
+
+
+<section class="features">
+
+  <div class="feature">
+    <i data-lucide="badge-dollar-sign"></i>
+    <h3>Affordable</h3>
+    <p>Best prices</p>
+  </div>
+
+  <div class="feature">
+    <i data-lucide="truck"></i>
+    <h3>Fast Delivery</h3>
+    <p>2-3 days</p>
+  </div>
+
+  <div class="feature">
+    <i data-lucide="shield-check"></i>
+    <h3>Top Quality</h3>
+    <p>Premium shoes</p>
+  </div>
+
+</section>
+
+<section class="offer">
+  <h2>🔥 Limited Time Offer</h2>
+  <p>Flat 30% OFF on Premium Leather Shoes</p>
+  <a href="#" class="offer-btn">Shop Now</a>
+</section>
+
+
+<!--side section-->
+  <section class="showcase">
+
+  <h2 class="section-title">Our Collection</h2>
+
+  <div class="products">
+
+    <div class="product">
+      <img src="images/s1.png" alt="">
+      <h3>Classic Leather</h3>
+      <p>₹4,999</p>
+    </div>
+
+    <div class="product">
+      <img src="images/s2.png" alt="">
+      <h3>Urban Runner</h3>
+      <p>₹3,499</p>
+    </div>
+
+    <div class="product">
+      <img src="images/s3.png" alt="">
+      <h3>Street Style</h3>
+      <p>₹2,999</p>
+    </div>
+
+    <div class="product">
+      <img src="images/s4.png" alt="">
+      <h3>Premium Loafer</h3>
+      <p>₹5,499</p>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="showcase">
+
+ 
+
+  <div class="products">
+
+    <div class="product">
+      <div class="product-img">
+        <img src="images/s1.png" alt="">
+      </div>
+      <div class="product-info">
+        <h3>Classic Leather</h3>
+        <p>₹4,999</p>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-img">
+        <img src="images/s2.png" alt="">
+      </div>
+      <div class="product-info">
+        <h3>Urban Runner</h3>
+        <p>₹3,499</p>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-img">
+        <img src="images/s3.png" alt="">
+      </div>
+      <div class="product-info">
+        <h3>Street Style</h3>
+        <p>₹2,999</p>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-img">
+        <img src="images/s4.png" alt="">
+      </div>
+      <div class="product-info">
+        <h3>Premium Loafer</h3>
+        <p>₹5,499</p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+<!-- model section -->
+<section class="image-section">
+  <img src="model.png" alt="Full Image">
+</section>
+
+<!--lofer section-->
+<section class="showcase">
+
+  <h2 class="section-title">Our Collection</h2>
+
+  <div class="products">
+
+    <div class="product">
+      <img src="images/l1.jpeg" alt="">
+      
+    </div>
+
+    <div class="product">
+      <img src="images/l2.jpeg" alt="">
+     
+    </div>
+
+    <div class="product">
+      <img src="images/l3.jpeg" alt="">
+      
+     
+    </div>
+
+    <div class="product">
+      <img src="images/l4.jpeg" alt="">
+      
+     
+    </div>
+
+  </div>
+
+</section>
+
+<section class="hero2">
+  <img src="uu.png" alt="shoe banner">
+
+  <div class="hero2-content">
+    <h1>NOT JUST <span>SHOES</span></h1>
+    <p>A Work of Art</p>
+    <a href="#" class="hero2-btn">Shop Now</a>
+  </div>
+</section>
+
+<script>
+lucide.createIcons();
+
+const toggle = document.getElementById("menu-toggle");
+const nav = document.querySelector(".nav");
+
+toggle.addEventListener("click", () => {
+  nav.classList.toggle("active");
+});
+</script>
+
+<script>
+const section = document.querySelector(".showcase");
+
+window.addEventListener("scroll", () => {
+  const top = section.getBoundingClientRect().top;
+  const screen = window.innerHeight;
+
+  if (top < screen - 100) {
+    section.classList.add("show");
+  }
+});
+</script>
+<footer class="footer">
+  <div class="footer-container">
+
+    <div class="footer-brand">
+      <h2>LeoBerry</h2>
+      <p>Crafting premium footwear that blends style, comfort, and durability.</p>
+    </div>
+
+    <div>
+      <h3>Shop</h3>
+      <a href="#">Men</a>
+      <a href="#">Women</a>
+      <a href="#">New Arrivals</a>
+      <a href="#">Best Sellers</a>
+    </div>
+
+    <div>
+      <h3>Support</h3>
+      <a href="#">Contact</a>
+      <a href="#">Returns</a>
+      <a href="#">Shipping</a>
+      <a href="#">FAQ</a>
+    </div>
+
+    <div>
+      <h3>Follow</h3>
+      <div class="social-icons">
+        <i data-lucide="facebook"></i>
+        <i data-lucide="instagram"></i>
+        <i data-lucide="twitter"></i>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 LeoBerry. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
