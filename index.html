@@ -20,7 +20,6 @@
 }
 
 
-
 /* NAVBAR */
 .header {
   width: 100%;
@@ -34,8 +33,9 @@
   left: 0;
 
   z-index: 1000;
-  background: rgba(255,255,255,0.2);
-  backdrop-filter: blur(10px);
+
+  background: transparent; /* 👈 start me transparent */
+  transition: 0.3s;
 }
 
 .logo img {
@@ -60,11 +60,35 @@
 }
 
 .nav a {
-  margin: 10px 0;
+  position: relative;
   text-decoration: none;
   color: black;
+  font-weight: 500;
+  margin: 10px 0;
+
 }
 
+/* underline hidden by default */
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background:black;
+  transition: 0.3s ease;
+}
+
+/* hover par line expand hogi */
+.nav a:hover::after {
+  width: 100%;
+}
+.header.scrolled {
+  background: #382422 ;
+  backdrop-filter: blur(10px);
+ transition: 0.5s;
+}
 /* MENU */
 .menu-toggle {
   font-size: 24px;
@@ -223,7 +247,7 @@
 /* DESKTOP */
 @media (min-width: 768px) {
 
-  .nav {
+ .nav {
     position: static;
     flex-direction: row;
     background: none;
@@ -233,11 +257,28 @@
 
   .nav a {
     margin-left: 30px;
+    color : white;
   }
 
   .menu-toggle {
     display: none;
   }
+
+  .nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background:white;
+  transition: 0.3s ease;
+}
+.header.scrolled {
+  background: #382422 ;
+  backdrop-filter: blur(10px);
+
+}
 
   .logo img {
     height: 60px;
