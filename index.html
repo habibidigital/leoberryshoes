@@ -659,6 +659,69 @@
         height: 90px;
     }
 }
+
+  .compact-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 40px 6%;
+    max-width: 1100px;
+    margin: auto;
+    background: #f5f5f5;
+}
+
+/* Image */
+.compact-image img {
+    width: 100%;
+    max-width: 320px; /* small size */
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+/* Content */
+.compact-content {
+    max-width: 420px;
+}
+
+.compact-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    margin-bottom: 10px;
+    color: #2b2b2b;
+}
+
+.compact-content p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 12px;
+}
+
+.compact-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.compact-content ul li {
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.compact-content ul li::before {
+    content: "✔";
+    color: #8b5e3c;
+    margin-right: 6px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .compact-section {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
 </style>
 </head>
 
@@ -893,6 +956,29 @@ window.addEventListener("scroll", function() {
 </div>
 </section>
 
+<section class="compact-section">
+
+    <!-- Left Image -->
+    <div class="compact-image">
+        <img src="images/mul.jpeg" alt="Premium Shoes">
+    </div>
+
+    <!-- Right Content -->
+    <div class="compact-content">
+        <h2>Premium Leather Quality</h2>
+        <p>
+            Crafted with precision using high-quality leather, ensuring durability and elegance in every step.
+        </p>
+
+        <ul>
+            <li>Genuine Leather</li>
+            <li>Handcrafted Finish</li>
+            <li>Comfort Fit</li>
+            <li>Long Lasting</li>
+        </ul>
+    </div>
+
+</section>
 <section class="hero2">
   <img src="uu.png" alt="shoe banner">
 
