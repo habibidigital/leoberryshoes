@@ -604,6 +604,61 @@
 .product:hover .hover-img {
   opacity: 1;
 }
+
+  .section {
+    padding: 60px 20px;
+    text-align: center;
+    background: #fff;
+}
+
+.section h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+/* Row Layout */
+.shoe-row {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+/* Circle Card */
+.shoe-item {
+    text-align: center;
+    transition: 0.3s;
+}
+
+.shoe-item img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #ddd;
+    transition: 0.3s;
+}
+
+/* Hover effect */
+.shoe-item:hover img {
+    transform: scale(1.1);
+    border-color: #8b5e3c;
+}
+
+.shoe-item p {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .shoe-item img {
+        width: 90px;
+        height: 90px;
+    }
+}
 </style>
 </head>
 
@@ -678,6 +733,45 @@ window.addEventListener("scroll", function() {
   <p>Flat 30% OFF on Premium Leather Shoes</p>
   <a href="#" class="offer-btn">Shop Now</a>
 </section>
+
+<section class="section">
+    <h1>All Types of Men Shoes</h1>
+
+    <div class="shoe-row">
+
+        <div class="shoe-item">
+            <img src="images/formal.jpeg">
+            <p>Formal</p>
+        </div>
+
+        <div class="shoe-item">
+            <img src="images/boot.jpeg">
+            <p>Boots</p>
+        </div>
+
+        <div class="shoe-item">
+            <img src="images/casual.jpeg">
+            <p>Casual</p>
+        </div>
+
+        <div class="shoe-item">
+            <img src="images/l4.jpeg">
+            <p>Loafers</p>
+        </div>
+
+        <div class="shoe-item">
+            <img src="images/sneaker.jpeg">
+            <p>Sneakers</p>
+        </div>
+
+        <div class="shoe-item">
+            <img src="images/chelsea.jpg">
+            <p>Chelsea Boots</p>
+        </div>
+
+    </div>
+</section>
+
 
 
 <!--side section-->
