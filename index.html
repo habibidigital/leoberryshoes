@@ -634,12 +634,22 @@
   </div>
 </section>
 <!--whatsapp section-->
-<a href="https://wa.me/919999999999?text=Hi%20I%20am%20interested%20in%20your%20loafer%20shoes"
+<a href="https://wa.me/919837863554?text=Hi%20I%20am%20interested%20in%20your%20loafer%20shoes"
    class="whatsapp-btn"
    target="_blank">
    <i class="fab fa-whatsapp"></i>
 </a>
+<script>
+window.addEventListener("scroll", function() {
+  const header = document.querySelector(".header");
 
+  if (window.scrollY > 50) {
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
+});
+</script>
 
 <section class="features">
 
