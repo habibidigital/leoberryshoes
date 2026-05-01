@@ -35,7 +35,7 @@
 
   z-index: 1000;
 
-  background: transparent; /* 👈 start me transparent */
+  background: transparent; 
   transition: 0.3s;
 }
 
@@ -69,7 +69,7 @@
 
 }
 
-/* underline hidden by default */
+
 .nav a::after {
   content: "";
   position: absolute;
@@ -81,7 +81,6 @@
   transition: 0.3s ease;
 }
 
-/* hover par line expand hogi */
 .nav a:hover::after {
   width: 100%;
 }
@@ -1042,18 +1041,18 @@ window.addEventListener("scroll", function() {
     <a href="#" class="hero2-btn">Shop Now</a>
   </div>
 </section>
-
 <script>
-lucide.createIcons();
+document.addEventListener("DOMContentLoaded", function () {
 
-const toggle = document.getElementById("menu-toggle");
-const nav = document.querySelector(".nav");
+  const toggle = document.getElementById("menu-toggle");
+  const nav = document.querySelector(".nav");
 
-toggle.addEventListener("click", () => {
-  nav.classList.toggle("active");
+  toggle.addEventListener("click", () => {
+    nav.classList.toggle("active");
+  });
+
 });
 </script>
-
 <script>
 const section = document.querySelector(".showcase");
 
