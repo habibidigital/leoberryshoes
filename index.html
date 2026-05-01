@@ -722,6 +722,56 @@
     }
 }
 
+  
+/* Section spacing */
+.section {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+/* Ribbon container */
+.ribbon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    animation: fadeDown 1s ease;
+}
+
+/* Ribbon image */
+.ribbon-wrapper img {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+}
+
+/* Demo content below ribbon */
+
+
+/* Animation */
+@keyframes fadeDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .ribbon-wrapper img {
+        max-width: 90%;
+    }
+
+    .section {
+        padding: 50px 15px;
+    }
+}
+
+
 </style>
 </head>
 
@@ -955,7 +1005,15 @@ window.addEventListener("scroll", function() {
 
 </div>
 </section>
+<section class="section">
 
+    <!-- Ribbon Image -->
+    <div class="ribbon-wrapper">
+        <img src="images/rib.png" alt="Premium Shoes Collection">
+    </div>
+
+ 
+</section>
 <section class="compact-section">
 
     <!-- Left Image -->
