@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- MAIN PAGE -->
+  <url>
+    <loc>https://www.leoberryshoes.com/</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+
+    <!-- Hero Image -->
+    <image:image>
+      <image:loc>https://www.leoberryshoes.com/hero.jpg</image:loc>
+      <image:title>LeoBerry Premium Leather Shoes Agra</image:title>
+      <image:caption>Handcrafted leather shoes wholesale and retail — Agra</image:caption>
+    </image:image>
+
+    <!-- Category Images -->
+    <image:image>
+      <image:loc>https://www.leoberryshoes.com/images/formal.jpeg</image:loc>
+      <image:title>Formal Leather Shoes Agra Wholesale — LeoBerry</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.leoberryshoes.com/images/boot.jpeg</image:loc>
+      <image:title>Leather Boots Wholesale Agra — LeoBerry</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.leoberryshoes.com/images/casual.jpeg</image:loc>
+      <image:title>Casual Leather Shoes Agra — LeoBerry</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.leoberryshoes.com/images/l4.jpeg</image:loc>
+      <image:title>Leather Loafers Wholesale Agra — LeoBerry</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.leoberryshoes.com/images/sneaker.jpeg</image:loc>
+      <image:title>Leather Sneakers Agra — LeoBerry</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.leoberryshoes.com/images/chelsea.jpeg</image:loc>
+      <image:title>Chelsea Boots Leather Wholesale Agra — LeoBerry</image:title>
+    </image:image>
+  </url>
+
+  <!-- SECTION ANCHORS (for Google to understand page sections) -->
+  <url>
+    <loc>https://www.leoberryshoes.com/#collection</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.leoberryshoes.com/#wholesale</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://www.leoberryshoes.com/#reviews</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://www.leoberryshoes.com/#visit</loc>
+    <lastmod>2026-06-05</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+</urlset>
