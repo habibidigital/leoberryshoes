@@ -254,12 +254,16 @@ a { text-decoration: none; color: inherit; }
 @keyframes scrollDrop { 0%,100%{transform:scaleY(1);opacity:1} 50%{transform:scaleY(0.5);opacity:0.5} }
 @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 
-/* OFFER BANNER */
+/* ===================== OFFER BANNER WITH COUNTDOWN ===================== */
 .offer-banner {
   background: var(--gold);
-  padding: 14px 5%;
+  padding: 0;
+  position: relative; z-index: 10;
+}
+.offer-banner-inner {
+  padding: 12px 5%;
   display: flex; align-items: center; justify-content: center; gap: 1rem;
-  flex-wrap: wrap; position: relative; z-index: 10;
+  flex-wrap: wrap;
 }
 .offer-banner span {
   font-family: var(--font-sans); font-size: 13px; font-weight: 600;
@@ -278,6 +282,31 @@ a { text-decoration: none; color: inherit; }
   border: 2px solid #0a0a0a;
 }
 .offer-cta:hover { transform: scale(1.03); }
+/* Countdown strip — inside yellow banner */
+.countdown-strip {
+  background: transparent;
+  padding: 0 5% 10px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  flex-wrap: wrap;
+}
+.cd-label {
+  font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #0a0a0a; font-weight: 600;
+}
+.cd-units { display: flex; gap: 5px; align-items: center; }
+.cd-block {
+  display: flex; flex-direction: column; align-items: center;
+  background: rgba(0,0,0,0.18); border-radius: 3px;
+  padding: 4px 9px; min-width: 42px;
+}
+.cd-num {
+  font-family: var(--font-serif); font-size: 1.25rem; font-weight: 700;
+  color: #ffffff; line-height: 1; letter-spacing: 0.02em;
+}
+.cd-unit {
+  font-size: 8px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(0,0,0,0.55); margin-top: 1px;
+}
+.cd-sep { font-size: 1rem; color: #0a0a0a; font-weight: 700; margin-bottom: 6px; }
+.cd-expired { font-size: 12px; color: #0a0a0a; font-weight: 700; letter-spacing: 0.08em; }
 
 /* STATS */
 .stats {
@@ -345,20 +374,17 @@ a { text-decoration: none; color: inherit; }
 }
 .cat-item:hover .cat-line { transform: scaleX(1); }
 
-/* =====================================================
-   COLLECTION GRID — FIXED: puri image, choti cards
-   ===================================================== */
+/* COLLECTION GRID */
 .collection { padding: 0 5% 6rem; }
 .coll-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columns — choti cards */
+  grid-template-columns: repeat(4, 1fr);
   gap: 10px;
 }
 .coll-item {
   position: relative; overflow: hidden; border-radius: 4px;
   background: var(--card);
   opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease;
-  /* NO aspect-ratio — image apni natural height rakhegi */
 }
 .coll-item.visible { opacity: 1; transform: translateY(0); }
 .coll-item:nth-child(1) { transition-delay: 0s; }
@@ -370,12 +396,8 @@ a { text-decoration: none; color: inherit; }
 .coll-item:nth-child(7) { transition-delay: 0.28s; }
 .coll-item:nth-child(8) { transition-delay: 0.32s; }
 .coll-item:nth-child(9) { transition-delay: 0.36s; }
-/* Image: puri dikhegi, crop nahi hogi */
 .coll-item img {
-  width: 100%;
-  height: auto;        /* natural height — koi crop nahi */
-  display: block;
-  object-fit: contain;
+  width: 100%; height: auto; display: block; object-fit: contain;
   transition: transform 0.7s ease;
 }
 .coll-item:hover img { transform: scale(1.04); }
@@ -520,13 +542,73 @@ a { text-decoration: none; color: inherit; }
 }
 .reviews-note a { color: var(--gold); border-bottom: 1px solid rgba(201,168,76,0.3); }
 
+/* ===================== FAQ SECTION ===================== */
+.faq-section {
+  padding: 6rem 5%; background: var(--dark); border-top: 1px solid var(--border);
+}
+.faq-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 3rem;
+}
+.faq-item {
+  background: var(--card); border: 1px solid var(--border); border-radius: 6px;
+  overflow: hidden; cursor: pointer;
+  transition: border-color 0.3s;
+  opacity: 0; transform: translateY(20px);
+  transition: border-color 0.3s, opacity 0.6s ease, transform 0.6s ease;
+}
+.faq-item.visible { opacity: 1; transform: translateY(0); }
+.faq-item:nth-child(1) { transition-delay: 0s; }
+.faq-item:nth-child(2) { transition-delay: 0.06s; }
+.faq-item:nth-child(3) { transition-delay: 0.12s; }
+.faq-item:nth-child(4) { transition-delay: 0.18s; }
+.faq-item:nth-child(5) { transition-delay: 0.24s; }
+.faq-item:nth-child(6) { transition-delay: 0.30s; }
+.faq-item:hover,
+.faq-item.open { border-color: var(--gold); }
+.faq-q {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.4rem 1.6rem; gap: 1rem;
+}
+.faq-q-text {
+  font-size: 15px; font-weight: 500; color: var(--white); line-height: 1.4;
+}
+.faq-icon {
+  width: 28px; height: 28px; flex-shrink: 0;
+  border: 1px solid var(--border); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--gold); font-size: 16px; font-weight: 300;
+  transition: transform 0.35s ease, background 0.3s, border-color 0.3s;
+  user-select: none;
+}
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+  background: var(--gold-dim); border-color: var(--gold);
+}
+.faq-body {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+  padding: 0 1.6rem;
+}
+.faq-item.open .faq-body {
+  max-height: 300px; padding: 0 1.6rem 1.4rem;
+}
+.faq-a {
+  font-size: 14px; color: var(--muted); line-height: 1.75;
+  border-top: 1px solid var(--border); padding-top: 1rem;
+}
+.faq-a strong { color: var(--gold); }
+.faq-cta-wrap {
+  text-align: center; margin-top: 2.5rem;
+}
+.faq-cta-wrap p { font-size: 14px; color: var(--muted); margin-bottom: 1rem; }
+
 /* VISIT */
 .visit-section {
   display: grid; grid-template-columns: 1fr 1fr;
   border-top: 1px solid var(--border);
 }
 .visit-map { position: relative; min-height: 450px; }
-.visit-map iframe { width: 100%; height: 100%; border: none; filter: grayscale(1) invert(0.9) hue-rotate(180deg); }
+.visit-map iframe { width: 100%; height: 100%; border: none; }
 .visit-info {
   padding: 5rem; background: var(--dark); display: flex; flex-direction: column; justify-content: center;
 }
@@ -652,6 +734,23 @@ a { text-decoration: none; color: inherit; }
 }
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
+/* Live visitor count */
+.hero-visitors {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.25);
+  padding: 7px 14px; border-radius: 20px; margin-bottom: 2rem;
+  font-size: 13px; color: var(--white);
+  opacity: 0; animation: fadeUp 0.8s 0.85s ease forwards;
+}
+.visitor-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #4ade80;
+  animation: pulse-green 1.8s ease-in-out infinite;
+}
+@keyframes pulse-green {
+  0%,100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.5); }
+  50% { box-shadow: 0 0 0 5px rgba(74,222,128,0); }
+}
+
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   .stats { grid-template-columns: repeat(2, 1fr); }
@@ -667,6 +766,7 @@ a { text-decoration: none; color: inherit; }
   .visit-map { min-height: 350px; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
   .slide-item { flex: 0 0 calc(33.33% - 12px); }
+  .faq-grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 768px) {
   .nav-links { display: none; }
@@ -685,36 +785,24 @@ a { text-decoration: none; color: inherit; }
   .stats { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
   .footer-brand { grid-column: 1 / -1; }
-  .offer-banner { gap: 8px; padding: 12px 4%; }
-  .offer-banner span { font-size: 12px; text-align: center; }
+  .offer-banner-inner { gap: 8px; padding: 12px 4%; }
+  .offer-banner-inner span { font-size: 12px; text-align: center; }
+  .faq-grid { grid-template-columns: 1fr; }
+  .cd-block { min-width: 42px; padding: 5px 8px; }
+  .cd-num { font-size: 1.2rem; }
 }
 @media (max-width: 480px) {
   .cat-grid { grid-template-columns: repeat(2, 1fr); }
   .coll-grid { grid-template-columns: repeat(2, 1fr); }
   .slide-item { flex: 0 0 calc(80% - 8px); }
-  .offer-banner { flex-direction: column; text-align: center; padding: 14px 5%; gap: 8px; }
+  .offer-banner-inner { flex-direction: column; text-align: center; padding: 14px 5%; gap: 8px; }
   .offer-badge { font-size: 10px; padding: 4px 12px; }
-  .offer-banner span { font-size: 12px; line-height: 1.4; }
+  .offer-banner-inner span { font-size: 12px; line-height: 1.4; }
   .offer-cta { padding: 8px 18px; font-size: 11px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-brand { grid-column: 1 / -1; }
   .hero-scroll { bottom: 6rem; }
-}
-  /* Live visitor count */
-.hero-visitors {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(201,168,76,0.12); border: 1px solid rgba(201,168,76,0.25);
-  padding: 7px 14px; border-radius: 20px; margin-bottom: 2rem;
-  font-size: 13px; color: var(--white);
-  opacity: 0; animation: fadeUp 0.8s 0.85s ease forwards;
-}
-.visitor-dot {
-  width: 7px; height: 7px; border-radius: 50%; background: #4ade80;
-  animation: pulse-green 1.8s ease-in-out infinite;
-}
-@keyframes pulse-green {
-  0%,100% { box-shadow: 0 0 0 0 rgba(74,222,128,0.5); }
-  50% { box-shadow: 0 0 0 5px rgba(74,222,128,0); }
+  .cd-units { gap: 4px; }
 }
 </style>
 </head>
@@ -730,6 +818,7 @@ a { text-decoration: none; color: inherit; }
     <a href="#collection">Collection</a>
     <a href="#wholesale">Wholesale</a>
     <a href="#reviews">Reviews</a>
+    <a href="#faq">FAQ</a>
     <a href="#visit">Visit Us</a>
     <a href="https://wa.me/919837863554?text=Hi%2C%20I%20am%20interested%20in%20LeoBerry%20shoes" target="_blank" rel="noopener" class="nav-cta">WhatsApp Us</a>
   </nav>
@@ -745,6 +834,7 @@ a { text-decoration: none; color: inherit; }
   <a href="#collection" class="mobile-link">Collection</a>
   <a href="#wholesale" class="mobile-link">Wholesale</a>
   <a href="#reviews" class="mobile-link">Reviews</a>
+  <a href="#faq" class="mobile-link">FAQ</a>
   <a href="#visit" class="mobile-link">Visit Us</a>
   <div class="mobile-divider"></div>
   <a href="https://wa.me/919837863554?text=Hi%2C%20I%20am%20interested%20in%20LeoBerry%20shoes" target="_blank" rel="noopener" class="mobile-whatsapp">
@@ -780,11 +870,34 @@ a { text-decoration: none; color: inherit; }
   </div>
 </section>
 
-<!-- OFFER BANNER -->
+<!-- OFFER BANNER WITH COUNTDOWN -->
 <div class="offer-banner" role="banner" aria-label="Promotional offer">
-  <span class="offer-badge" style="color:white;">🔥 LIMITED OFFER</span>
-  <span>Flat 30% OFF on Premium Leather Shoes — Wholesale Orders Welcome</span>
-  <a href="https://wa.me/919837863554?text=Hi%2C%20I%20want%20the%2030%25%20offer%20on%20LeoBerry%20shoes" target="_blank" rel="noopener" class="offer-cta">Claim Offer</a>
+  <div class="offer-banner-inner">
+    
+    <span>Flat 30% OFF on Premium Leather Shoes —</span>
+   
+  
+  <!-- COUNTDOWN STRIP -->
+  
+    <span class="cd-label">Offer expires in</span>
+    <div class="cd-units">
+      <div class="cd-block">
+        <span class="cd-num" id="cd-hours">00</span>
+        <span class="cd-unit">Hours</span>
+      </div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block">
+        <span class="cd-num" id="cd-mins">00</span>
+        <span class="cd-unit">Mins</span>
+      </div>
+      <span class="cd-sep">:</span>
+      <div class="cd-block">
+        <span class="cd-num" id="cd-secs">00</span>
+        <span class="cd-unit">Secs</span>
+      </div>
+    </div>
+    <a href="https://wa.me/919837863554?text=Hi%2C%20I%20want%20the%2030%25%20offer%20on%20LeoBerry%20shoes" target="_blank" rel="noopener" style="font-size:11px;color:#0a0a0a;font-weight:700;letter-spacing:0.1em;border-bottom:1px solid rgba(0,0,0,0.35);">Grab Now →</a>
+  </div>
 </div>
 
 <!-- STATS -->
@@ -854,61 +967,25 @@ a { text-decoration: none; color: inherit; }
   </div>
 </section>
 
-<!-- COLLECTION GRID — 4 columns, puri image, choti cards -->
+<!-- COLLECTION GRID -->
 <section style="padding: 0 5% 6rem;">
   <div class="sec-header" style="text-align:left; padding-left:0; padding-right:0; max-width:none;">
     <p class="sec-eyebrow" style="justify-content:flex-start;">Showcase</p>
     <h2 class="sec-title">Our <em>Collection</em></h2>
   </div>
   <div class="coll-grid">
-    <div class="coll-item">
-      <img src="images/sh1.jpeg" alt="Premium leather shoes collection LeoBerry">
-      <span class="coll-tag">New Arrival</span>
-    </div>
-    <div class="coll-item">
-      <img src="images/sh6.jpeg" alt="Men's formal shoes Agra">
-      <span class="coll-tag">Formal</span>
-    </div>
-    <div class="coll-item">
-      <img src="images/sh3.jpeg" alt="Leather shoes Agra">
-      <span class="coll-tag">Classic</span>
-    </div>
-    <div class="coll-item">
-      <img src="images/sh5.jpeg" alt="Best seller shoes LeoBerry">
-      <span class="coll-tag">Best Seller</span>
-    </div>
-    <div class="coll-item">
-      <img src="images/l5.jpeg" alt="Premium loafer LeoBerry Agra">
-      <span class="coll-tag">Formal</span>
-    </div>
-    <div class="coll-item">
-      <img src="images/l6.jpeg" alt="Premium loafer LeoBerry Agra">
-      <span class="coll-tag">Formal</span>
-    </div>
-    <div class="coll-item">
-      <img src="images/l7.jpeg" alt="Premium loafer LeoBerry Agra">
-      <span class="coll-tag">Formal</span>
-    </div>
-    <div class="coll-item">
-      <img src="images/l8.jpeg" alt="Premium loafer LeoBerry Agra">
-      <span class="coll-tag">Formal</span>
-    </div>
-     <div class="coll-item">
-      <img src="images/l9.jpeg" alt="Premium loafer LeoBerry Agra">
-      <span class="coll-tag">Formal</span>
-    </div>
-     <div class="coll-item">
-      <img src="images/l10.jpeg" alt="Premium loafer LeoBerry Agra">
-      <span class="coll-tag">Formal</span>
-    </div>
-     <div class="coll-item">
-      <img src="images/l11.jpeg" alt="Premium loafer LeoBerry Agra">
-      <span class="coll-tag">Formal</span>
-    </div>
-     <div class="coll-item">
-      <img src="images/l12.jpeg" alt="Premium loafer LeoBerry Agra">
-      <span class="coll-tag">Formal</span>
-    </div>
+    <div class="coll-item"><img src="images/sh1.jpeg" alt="Premium leather shoes collection LeoBerry"><span class="coll-tag">New Arrival</span></div>
+    <div class="coll-item"><img src="images/sh6.jpeg" alt="Men's formal shoes Agra"><span class="coll-tag">Formal</span></div>
+    <div class="coll-item"><img src="images/sh3.jpeg" alt="Leather shoes Agra"><span class="coll-tag">Classic</span></div>
+    <div class="coll-item"><img src="images/sh5.jpeg" alt="Best seller shoes LeoBerry"><span class="coll-tag">Best Seller</span></div>
+    <div class="coll-item"><img src="images/l5.jpeg" alt="Premium loafer LeoBerry Agra"><span class="coll-tag">Formal</span></div>
+    <div class="coll-item"><img src="images/l6.jpeg" alt="Premium loafer LeoBerry Agra"><span class="coll-tag">Formal</span></div>
+    <div class="coll-item"><img src="images/l7.jpeg" alt="Premium loafer LeoBerry Agra"><span class="coll-tag">Formal</span></div>
+    <div class="coll-item"><img src="images/l8.jpeg" alt="Premium loafer LeoBerry Agra"><span class="coll-tag">Formal</span></div>
+    <div class="coll-item"><img src="images/l9.jpeg" alt="Premium loafer LeoBerry Agra"><span class="coll-tag">Formal</span></div>
+    <div class="coll-item"><img src="images/l10.jpeg" alt="Premium loafer LeoBerry Agra"><span class="coll-tag">Formal</span></div>
+    <div class="coll-item"><img src="images/l11.jpeg" alt="Premium loafer LeoBerry Agra"><span class="coll-tag">Formal</span></div>
+    <div class="coll-item"><img src="images/l12.jpeg" alt="Premium loafer LeoBerry Agra"><span class="coll-tag">Formal</span></div>
   </div>
 </section>
 
@@ -978,7 +1055,7 @@ a { text-decoration: none; color: inherit; }
         <div class="wf-item">
           <div class="wf-icon">📦</div>
           <div class="wf-title">Bulk Orders</div>
-          <div class="wf-sub">Min. 12 pairs per style</div>
+          <div class="wf-sub">Min. 8 pairs per style</div>
         </div>
         <div class="wf-item">
           <div class="wf-icon">🚚</div>
@@ -997,9 +1074,7 @@ a { text-decoration: none; color: inherit; }
         </div>
       </div>
       <div class="wholesale-cta">
-        <a href="https://wa.me/919837863554?text=Hi%2C%20I%20want%20wholesale%20shoes%20from%20LeoBerry%20Agra" target="_blank" rel="noopener" class="btn-primary">
-          Wholesale Inquiry
-        </a>
+        <a href="https://wa.me/919837863554?text=Hi%2C%20I%20want%20wholesale%20shoes%20from%20LeoBerry%20Agra" target="_blank" rel="noopener" class="btn-primary">Wholesale Inquiry</a>
         <a href="tel:+919837863554" class="btn-outline">Call Now</a>
       </div>
     </div>
@@ -1024,55 +1099,135 @@ a { text-decoration: none; color: inherit; }
     <div class="review-card">
       <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
       <p class="review-text">Bahut hi achhe quality ke shoes mila. Wholesale mein 2 dozen loafers liye aur sab customers ko pasand aaye. Agra se best deal milti hai LeoBerry se.</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar">RK</div>
-        <div><div class="reviewer-name">Rajesh Kumar</div><div class="reviewer-loc">Shoe Retailer, Lucknow</div></div>
-      </div>
+      <div class="reviewer"><div class="reviewer-avatar">RK</div><div><div class="reviewer-name">Rajesh Kumar</div><div class="reviewer-loc">Shoe Retailer, Lucknow</div></div></div>
     </div>
     <div class="review-card">
       <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
       <p class="review-text">Formal shoes ki quality outstanding hai. 6 mahine ho gaye, ek bhi stitch nahi tuta. Agra se genuine leather shoes ke liye LeoBerry best choice hai.</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar">AS</div>
-        <div><div class="reviewer-name">Amit Sharma</div><div class="reviewer-loc">Customer, Delhi</div></div>
-      </div>
+      <div class="reviewer"><div class="reviewer-avatar">AS</div><div><div class="reviewer-name">Amit Sharma</div><div class="reviewer-loc">Customer, Delhi</div></div></div>
     </div>
     <div class="review-card">
       <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
       <p class="review-text">Maine pehli baar wholesale order diya tha. 3 dozen boots mein se ek bhi return nahi aaya customers se. Price bhi factory rate mila. Highly recommended!</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar">MK</div>
-        <div><div class="reviewer-name">Mohd. Kashif</div><div class="reviewer-loc">Dealer, Kanpur</div></div>
-      </div>
+      <div class="reviewer"><div class="reviewer-avatar">MK</div><div><div class="reviewer-name">Mohd. Kashif</div><div class="reviewer-loc">Dealer, Kanpur</div></div></div>
     </div>
     <div class="review-card">
       <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
       <p class="review-text">Chelsea boots ke liye Agra aaya tha — LeoBerry ki dukaan Hing Ki Mandi mein mili. Staff bahut helpful tha, custom size bhi available tha. Definitely wapas aaunga.</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar">PJ</div>
-        <div><div class="reviewer-name">Prashant Joshi</div><div class="reviewer-loc">Customer, Agra</div></div>
-      </div>
+      <div class="reviewer"><div class="reviewer-avatar">PJ</div><div><div class="reviewer-name">Prashant Joshi</div><div class="reviewer-loc">Customer, Agra</div></div></div>
     </div>
     <div class="review-card">
       <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
       <p class="review-text">WhatsApp pe photo bheja aur 2 din mein parcel aa gaya. Loafers bilkul waise hi hain jaisi photo mein the. Leather genuine hai — smell se hi pata chalta hai.</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar">VG</div>
-        <div><div class="reviewer-name">Vikas Gupta</div><div class="reviewer-loc">Customer, Jaipur</div></div>
-      </div>
+      <div class="reviewer"><div class="reviewer-avatar">VG</div><div><div class="reviewer-name">Vikas Gupta</div><div class="reviewer-loc">Customer, Jaipur</div></div></div>
     </div>
     <div class="review-card">
       <div class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
       <p class="review-text">Hing Ki Mandi mein sabse best shoe market hai Agra ka. LeoBerry wahan ka sabse reliable brand hai. Bulk order pe extra discount bhi milta hai.</p>
-      <div class="reviewer">
-        <div class="reviewer-avatar">ST</div>
-        <div><div class="reviewer-name">Suresh Tiwari</div><div class="reviewer-loc">Retailer, Varanasi</div></div>
-      </div>
+      <div class="reviewer"><div class="reviewer-avatar">ST</div><div><div class="reviewer-name">Suresh Tiwari</div><div class="reviewer-loc">Retailer, Varanasi</div></div></div>
     </div>
   </div>
-  <p class="reviews-note">
-    ⭐ 4.9/5 average rating · <a href="https://wa.me/919837863554" target="_blank">Share your experience on WhatsApp</a>
-  </p>
+  <p class="reviews-note">⭐ 4.9/5 average rating · <a href="https://wa.me/919837863554" target="_blank">Share your experience on WhatsApp</a></p>
+</section>
+
+<!-- ===================== FAQ SECTION ===================== -->
+<section class="faq-section" id="faq">
+  <div class="sec-header" style="padding-left:0; padding-right:0; max-width:none;">
+    <p class="sec-eyebrow">Got Questions?</p>
+    <h2 class="sec-title">Frequently Asked <em>Questions</em></h2>
+    <p class="sec-sub">Quick answers to the most common questions.</p>
+  </div>
+
+  <div class="faq-grid">
+
+    <!-- Q1 -->
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span class="faq-q-text">What is the minimum order quantity?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-body">
+        <p class="faq-a">
+          For wholesale orders, the minimum quantity is <strong>8 pairs per style</strong>. If you need fewer pairs, contact us on WhatsApp and we will suggest the best option.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q2 -->
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span class="faq-q-text">Do you offer Cash on Delivery (COD)?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-body">
+        <p class="faq-a">
+          Yes, <strong>COD is available</strong> in all locations. Contact us on WhatsApp to check availability in your area.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q3 -->
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span class="faq-q-text">What if I receive a defective product?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-body">
+        <p class="faq-a">
+          If there is any manufacturing defect or quality issue, we offer a <strong>full replacement or return</strong>. Simply send us photos on WhatsApp and we will help you quickly.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q4 -->
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span class="faq-q-text">How long does delivery take?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-body">
+        <p class="faq-a">
+          We ship across India. Most orders are delivered within <strong>3–7 business days</strong>. Nearby cities may receive orders faster.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q5 -->
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span class="faq-q-text">Do you provide different sizes?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-body">
+        <p class="faq-a">
+          Yes. We offer sizes from <strong>UK 5 to UK 12</strong>. Size availability may vary depending on the style.
+        </p>
+      </div>
+    </div>
+
+    <!-- Q6 (New Question) -->
+    <div class="faq-item" onclick="toggleFaq(this)">
+      <div class="faq-q">
+        <span class="faq-q-text">How can I place an order?</span>
+        <span class="faq-icon">+</span>
+      </div>
+      <div class="faq-body">
+        <p class="faq-a">
+          Placing an order is simple. Just contact us on <strong>WhatsApp</strong>, choose your styles and quantity, and our team will guide you through the process.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div class="faq-cta-wrap">
+    <p>Koi aur sawaal hai? Hum WhatsApp pe turant reply karte hain.</p>
+    <a href="https://wa.me/919837863554?text=Hi%2C%20mujhe%20LeoBerry%20shoes%20ke%20baare%20mein%20kuch%20puchna%20tha" target="_blank" rel="noopener" class="btn-primary" style="display:inline-flex;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      WhatsApp Pe Poochho
+    </a>
+  </div>
 </section>
 
 <!-- RIBBON -->
@@ -1081,14 +1236,6 @@ a { text-decoration: none; color: inherit; }
 </div>
 
 <!-- HERO BANNER -->
-<section class="hero2" aria-label="Brand statement">
-  <div class="hero2-bg"></div>
-  <div class="hero2-content">
-    <h2>Not Just <span>Shoes</span> —<br>A Work of Art</h2>
-    <p>Handcrafted in Agra. Worn across India.</p>
-    <a href="https://wa.me/919837863554?text=Hi%2C%20I%20want%20to%20visit%20LeoBerry%20showroom%20in%20Agra" target="_blank" rel="noopener" class="btn-primary">Plan Your Visit</a>
-  </div>
-</section>
 
 <!-- VISIT + MAP -->
 <section class="visit-section" id="visit">
@@ -1134,9 +1281,7 @@ a { text-decoration: none; color: inherit; }
         </div>
       </div>
     </div>
-    <a href="https://maps.google.com/?q=Hing+Ki+Mandi+Mantola+Agra+UP+282003" target="_blank" rel="noopener" class="directions-btn">
-      Get Directions →
-    </a>
+    <a href="https://maps.google.com/?q=Hing+Ki+Mandi+Mantola+Agra+UP+282003" target="_blank" rel="noopener" class="directions-btn">Get Directions →</a>
   </div>
 </section>
 
@@ -1180,6 +1325,7 @@ a { text-decoration: none; color: inherit; }
       <a href="https://wa.me/919837863554?text=Hi%2C%20bulk%20order%20inquiry" target="_blank" rel="noopener">Bulk Orders</a>
       <a href="https://wa.me/919837863554?text=Hi%2C%20dealer%20inquiry" target="_blank" rel="noopener">Dealer Inquiry</a>
       <a href="https://wa.me/919837863554?text=Hi%2C%20custom%20order%20inquiry" target="_blank" rel="noopener">Custom Orders</a>
+      <a href="#faq">FAQ</a>
       <a href="https://wa.me/919837863554" target="_blank" rel="noopener">WhatsApp Us</a>
     </div>
   </div>
@@ -1229,7 +1375,7 @@ document.querySelectorAll('.mobile-link, .mobile-whatsapp').forEach(link => {
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.12 });
-document.querySelectorAll('.stat, .cat-item, .coll-item, .review-card, .fade-in').forEach(el => observer.observe(el));
+document.querySelectorAll('.stat, .cat-item, .coll-item, .review-card, .fade-in, .faq-item').forEach(el => observer.observe(el));
 
 /* Counter animation */
 function animateCounter(el, target, suffix) {
@@ -1275,13 +1421,46 @@ function goTo(index) {
 document.getElementById('prevBtn').addEventListener('click', () => goTo(currentSlide - 1));
 document.getElementById('nextBtn').addEventListener('click', () => goTo(currentSlide + 1));
 window.addEventListener('resize', () => goTo(0));
-</script>
-  /* ===================== LIVE VISITOR COUNT ===================== */
-  <script>
+
+/* FAQ Accordion */
+function toggleFaq(item) {
+  const isOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+  // Open clicked (if wasn't already open)
+  if (!isOpen) item.classList.add('open');
+}
+
+/* ===================== COUNTDOWN TIMER ===================== */
 (function() {
-  const base = 20;
+  // End time: midnight tonight (end of today in IST)
+  const now = new Date();
+  const endTime = new Date(now);
+  endTime.setHours(23, 59, 59, 0); // expires at midnight
+
+  function updateCountdown() {
+    const remaining = endTime - new Date();
+    if (remaining <= 0) {
+      document.getElementById('cd-hours').textContent = '00';
+      document.getElementById('cd-mins').textContent = '00';
+      document.getElementById('cd-secs').textContent = '00';
+      return;
+    }
+    const h = Math.floor(remaining / 3600000);
+    const m = Math.floor((remaining % 3600000) / 60000);
+    const s = Math.floor((remaining % 60000) / 1000);
+    document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+    document.getElementById('cd-mins').textContent  = String(m).padStart(2, '0');
+    document.getElementById('cd-secs').textContent  = String(s).padStart(2, '0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+})();
+
+/* Live visitor count */
+(function() {
   const el = document.getElementById('visitorCount');
-  let current = base + Math.floor(Math.random() * 15);
+  let current = 20 + Math.floor(Math.random() * 15);
   el.textContent = current;
   setInterval(() => {
     const delta = Math.random() < 0.5 ? 1 : -1;
